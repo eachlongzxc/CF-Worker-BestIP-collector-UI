@@ -33,11 +33,6 @@ export default {
     },
   
     async fetch(request, env, ctx) {
-      // =========================================================================
-      // [新增功能区域 START] - 密码验证与拦截逻辑
-      // =========================================================================
-      
-      // 1. 强制检查环境变量 (env.password)
       if (!env.password) {
         return new Response('未配置password环境变量！', {
           status: 500,
@@ -45,27 +40,20 @@ export default {
         });
       }
 
-      // 预处理请求信息用于鉴权
       const _authUrl = new URL(request.url);
       const _clientIP = request.headers.get('CF-Connecting-IP') || 'unknown';
 
-      // 2. 处理登录 API 请求 (POST /auth-login)
       if (_authUrl.pathname === '/auth-login' && request.method === 'POST') {
         return await handleLoginRequest(request, env, _clientIP);
       }
 
-      // 3. 验证 Cookie
       const _cookie = request.headers.get('Cookie') || '';
       const _isAuthorized = await verifyAuthCookie(_cookie, env.password);
 
-      // 4. 如果未验证通过，拦截所有请求并返回登录页面
-      if (!_isAuthorized) {
+      if (!_isAuthorized && _authUrl.pathname !== '/edgetunnel.txt' && _authUrl.pathname !== '/cfnew.txt') {
         return await serveAuthPage(env);
       }
 
-      // =========================================================================
-      // [新增功能区域 END] - 鉴权通过，下方执行原版逻辑
-      // =========================================================================
 
       const url = new URL(request.url);
       const path = url.pathname;
