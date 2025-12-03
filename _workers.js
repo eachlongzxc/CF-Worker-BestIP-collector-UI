@@ -18,10 +18,6 @@
 const FAST_IP_COUNT = 20; 
 // 自动测速时的最大IP数量，防止超时
 const AUTO_TEST_MAX_IPS = 200; 
-
-// ==========================================
-// 2. WORKER ENTRY POINT
-// ==========================================
 export default {
   // 定时任务处理器
   async scheduled(event, env, ctx) {
