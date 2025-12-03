@@ -161,10 +161,6 @@ export default {
   }
 };
 
-// ==========================================
-// 3. ROUTE HANDLERS (API Logic)
-// ==========================================
-
 // --- IP 获取接口 ---
 
 async function handleGetIPs(env) {
@@ -455,10 +451,6 @@ async function handleAdminToken(request, env) {
   }
 }
 
-// ==========================================
-// 4. CORE BUSINESS LOGIC
-// ==========================================
-
 async function updateAllIPs(env) {
   const urls = [
     'https://ip.164746.xyz', 
@@ -605,10 +597,6 @@ async function testIPSpeed(ip) {
   }
 }
 
-// ==========================================
-// 5. STORAGE & AUTH HELPERS
-// ==========================================
-
 async function getStoredIPs(env) {
   try {
     if (!env.IP_STORAGE) return getDefaultData();
@@ -709,10 +697,6 @@ function tokenErrorResponse() {
   });
 }
 
-// ==========================================
-// 6. UTILITY FUNCTIONS
-// ==========================================
-
 function getColoFlag(colo) {
   const coloMap = {
     'HKG': '🇭🇰 香港', 'TPE': '🇹🇼 台湾', 'KHH': '🇹🇼 台湾',
@@ -800,10 +784,6 @@ async function sha256(text) {
   const hashArray = Array.from(new Uint8Array(hashBuffer));
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
-
-// ==========================================
-// 7. UI GENERATORS (HTML/CSS/Frontend JS)
-// ==========================================
 
 async function serveAuthPage(env) {
   const html = `<!DOCTYPE html>
