@@ -820,6 +820,7 @@ async function serveAuthPage(env) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cloudflare IP 收集器 - 登录</title>
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         :root { --bg-color: #f8fafc; --card-bg: white; --text-color: #334155; --border-color: #e2e8f0; }
         @media (prefers-color-scheme: dark) { :root { --bg-color: #0f172a; --card-bg: #1e293b; --text-color: #cbd5e1; --border-color: #334155; } }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg-color); color: var(--text-color); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
